@@ -14,16 +14,26 @@ namespace QnAmazing
 
         public QnAmazingPageViewModel()
         {
+
+            IsEntryPossible = true;
+
             AskCommand = new Command(AskCommandHandler);
             Answers = new ObservableCollection<QnAMakerResult>();
         }
 
         private async void AskCommandHandler()
         {
-            var qnaResult = await WebService.Query(query);
-            Debug.WriteLine(qnaResult.ToString());
-            ResponseJson = qnaResult.ToString();
-            Answers.Insert(0, qnaResult);
+            IsEntryPossible = false;
+            try 
+            {
+                var qnaResult = await WebService.Query(query);
+                Debug.WriteLine(qnaResult.ToString());
+                ResponseJson = qnaResult.ToString();
+                Answers.Insert(0, qnaResult);
+            }
+            finally {
+                IsEntryPossible = true;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -71,6 +81,38 @@ namespace QnAmazing
                 }
             }
         }
+
+        private bool isEntryPossible;
+        public bool IsEntryPossible
+        {
+            get
+            {
+                return isEntryPossible;
+            }
+            set
+            {
+                if (isEntryPossible == value)
+                {
+                    return;
+                }
+
+                isEntryPossible = value;
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(IsEntryPossible)));
+                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(IsBusy)));
+                }
+            }
+        }
+
+        public bool IsBusy
+        {
+            get
+            {
+                return !isEntryPossible;
+            }
+        }
+
 
         private ObservableCollection<QnAMakerResult> answers;
         public ObservableCollection<QnAMakerResult> Answers

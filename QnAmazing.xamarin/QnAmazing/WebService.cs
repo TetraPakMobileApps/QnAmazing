@@ -39,7 +39,9 @@ namespace QnAmazing
                 if (repsonse.IsSuccessStatusCode) {
 
                     var responseString = await repsonse.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<QnAMakerResult>(responseString);
+                    var makerResult = JsonConvert.DeserializeObject<QnAMakerResult>(responseString);
+                    makerResult.Question = query;
+                    return makerResult;
                 }
 			}
             return null;

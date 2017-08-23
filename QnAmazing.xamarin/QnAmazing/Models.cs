@@ -17,6 +17,18 @@ namespace QnAmazing
 		[JsonProperty(PropertyName = "score")]
 		public double Score { get; set; }
 
+        [JsonIgnore]
+        public string Emoji {
+            get {
+                if (Score < 30) return "BAD";
+                if (Score < 60) return "NJEA";
+                return "GOOD";
+            }
+        }
+
+		[JsonIgnore]
+		public string Question { get; set; }
+
         public override string ToString()
         {
             return string.Format("[QnAMakerResult: Answer={0}, Score={1}]", Answer, Score);
