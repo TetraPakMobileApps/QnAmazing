@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:QnAmazing" x:Class="QnAmazing.QnAmazingPage">
+    <StackLayout Padding="20,30,20,0">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Entry Text="{Binding Query}" HorizontalOptions="FillAndExpand" BackgroundColor="Aqua" />
+            <Button Text="Ask!" Command="{Binding AskCommand}" />
+        </StackLayout>
+        <Label Text="{Binding ResponseJson}" BackgroundColor="Fuchsia" />
+        <ListView ItemsSource="{Binding Answers}" BackgroundColor="Lime" HasUnevenRows="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Margin="9">
+                            <Label Text="{Binding Answer}" HorizontalOptions="Start" BackgroundColor="Green"/>
+                            <Label Text="👍" HorizontalOptions="End" BackgroundColor="Blue"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+  </ContentPage>
