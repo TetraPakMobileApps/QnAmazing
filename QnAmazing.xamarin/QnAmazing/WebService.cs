@@ -40,6 +40,7 @@ namespace QnAmazing
 
                     var responseString = await repsonse.Content.ReadAsStringAsync();
                     var makerResult = JsonConvert.DeserializeObject<QnAMakerResult>(responseString);
+                    makerResult.Answer = System.Net.WebUtility.HtmlDecode(makerResult.Answer);
                     makerResult.Question = query;
                     return makerResult;
                 }
