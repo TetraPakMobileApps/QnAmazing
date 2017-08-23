@@ -42,6 +42,7 @@
     <Compile Include="QnAmazingPageViewModel.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="WebService.cs" />
+    <Compile Include="ISpeechService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">

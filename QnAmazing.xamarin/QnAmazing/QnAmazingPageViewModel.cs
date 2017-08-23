@@ -12,13 +12,16 @@ namespace QnAmazing
     {
         public ICommand AskCommand { get; set; }
 
+        private ISpeechService textToSpeech;
+
         public QnAmazingPageViewModel()
         {
-
             IsEntryPossible = true;
 
             AskCommand = new Command(AskCommandHandler);
             Answers = new ObservableCollection<QnAMakerResult>();
+
+            textToSpeech = DependencyService.Get<ISpeechService>();
         }
 
         private async void AskCommandHandler()
@@ -30,6 +33,7 @@ namespace QnAmazing
                 Debug.WriteLine(qnaResult.ToString());
                 ResponseJson = qnaResult.ToString();
                 Answers.Insert(0, qnaResult);
+                textToSpeech.Speak(qnaResult.Answer);
             }
             finally {
                 IsEntryPossible = true;

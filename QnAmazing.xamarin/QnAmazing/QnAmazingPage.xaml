@@ -6,7 +6,7 @@
                 <Entry IsEnabled="{Binding IsEntryPossible}" Text="{Binding Query}" HorizontalOptions="FillAndExpand" BackgroundColor="Aqua" />
                 <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="true"></ActivityIndicator>
             </Grid>
-            <Button IsEnabled="{Binding IsEntryPossible}" Text="Ask!" Command="{Binding AskCommand}" BackgroundColor="Red"/>
+            <Button IsEnabled="{Binding IsEntryPossible}" Text="Ask!" Command="{Binding AskCommand}" />
         </StackLayout>
         <Label Text="{Binding ResponseJson}" BackgroundColor="Fuchsia" />
         <ListView ItemsSource="{Binding Answers}" BackgroundColor="Lime" HasUnevenRows="true">
