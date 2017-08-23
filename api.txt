@@ -1,0 +1,5 @@
+POST /knowledgebases/54625cfa-f8f1-4b0b-8a1f-1557785b22eb/generateAnswer
+Host: https://westus.api.cognitive.microsoft.com/qnamaker/v2.0
+Ocp-Apim-Subscription-Key: 08d31c549cca4bcc9d1fc8a8400fbd32
+Content-Type: application/json
+{"question":"hi"}

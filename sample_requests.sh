@@ -1,0 +1,1 @@
+curl -v -XPOST https://westus.api.cognitive.microsoft.com/qnamaker/v2.0/knowledgebases/54625cfa-f8f1-4b0b-8a1f-1557785b22eb/generateAnswer -H 'OcpApim-Subscription-Key: 08d31c549cca4bcc9d1fc8a8400fbd32' -d '{"question":"hi"}' -H 'Content-Type: application/json'
