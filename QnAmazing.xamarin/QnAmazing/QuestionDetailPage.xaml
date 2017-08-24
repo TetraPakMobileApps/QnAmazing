@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QnAmazing.QuestionDetailPage" Title="{Binding Qna.Question}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="QnAmazing.QuestionDetailPage" BackgroundColor="#24DDF6" Title="{Binding Qna.Question}">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="20,20,20,0">
             <Label Text="{Binding Qna.Question}" FontAttributes="Italic" />
@@ -10,7 +10,7 @@
             <Label HorizontalOptions="End" Text="{Binding Qna.Score, StringFormat='{0:F0}%'}" />
             <Label Text="{Binding AlternativeAnswersHeader}">
             </Label>
-            <ListView ItemsSource="{Binding QnaMultipleAlternatives}" HasUnevenRows="true">
+            <ListView Opacity="0.9" ItemsSource="{Binding QnaMultipleAlternatives}" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

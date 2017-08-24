@@ -8,7 +8,10 @@ namespace QnAmazing
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new QnAmazingPage());
+            var navigationPage = new NavigationPage(new QnAmazingPage());
+            navigationPage.BarBackgroundColor = new Color(0xEF / 255.0, 0x98 / 255.0, 0x84 / 255.0);
+            navigationPage.BarTextColor = Color.Black;
+            MainPage = navigationPage;
         }
 
         protected override void OnStart()
