@@ -13,6 +13,7 @@
             <Button IsEnabled="{Binding IsEntryPossible}" Text="Ask!" Command="{Binding AskCommand}" />
         </StackLayout>
         <Label Text="{Binding ResponseJson}" IsVisible="false" />
+
         <ListView 
             x:Name="AnswerList"
             ItemsSource="{Binding Answers}" 
