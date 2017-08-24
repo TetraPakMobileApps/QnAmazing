@@ -3,6 +3,14 @@ using Newtonsoft.Json;
 
 namespace QnAmazing
 {
+    public class QnAMakerMultipleResults
+    {
+		[JsonProperty(PropertyName = "answers")]
+        public QnAMakerResult[] Answers { get; set; }
+
+
+    }
+
     public class QnAMakerResult
 	{
 		/// <summary>

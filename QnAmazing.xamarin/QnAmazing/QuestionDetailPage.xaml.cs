@@ -7,13 +7,13 @@ namespace QnAmazing
 {
     public partial class QuestionDetailPage : ContentPage
     {
-        public QuestionDetailPage():this(null)
-        {}
+        public QuestionDetailPage():this(null) {}
 
         public QuestionDetailPage(QnAMakerResult qna)
         {
             InitializeComponent();
             BindingContext = new QuestionDetailViewModel(qna);
         }
+
     }
 }

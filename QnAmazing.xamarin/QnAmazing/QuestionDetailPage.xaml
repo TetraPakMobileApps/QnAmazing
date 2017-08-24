@@ -4,11 +4,28 @@
     x:Class="QnAmazing.QuestionDetailPage"
     Title="{Binding Qna.Question}">
 	<ContentPage.Content>
-        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="20">
-            <Label Text="{Binding Qna.Question}" FontAttributes="Italic"/>
-            <Label Text="{Binding Qna.Answer}" HorizontalOptions="FillAndExpand"/>
-            <ProgressBar Progress="{Binding ProgressScore}" />
-            <Label HorizontalOptions="End" Text="{Binding Qna.Score, StringFormat='{0:F0}%'}"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Padding="20,20,20,0">
+                <Label Text="{Binding Qna.Question}" FontAttributes="Italic"/>
+                <Label Text="{Binding Qna.Answer}" HorizontalOptions="FillAndExpand"/>
+                <ProgressBar Progress="{Binding ProgressScore}" />
+                <Label HorizontalOptions="End" Text="{Binding Qna.Score, StringFormat='{0:F0}%'}"/>
+                <Label Text="{Binding AlternativeAnswersHeader}"></Label>
+                <ListView 
+                    ItemsSource="{Binding QnaMultipleAlternatives}"
+                    HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" Padding="9">
+                                    <Label Text="{Binding Answer}" FontSize="14" HorizontalOptions="FillAndExpand" />
+                                    <Label Text="{Binding Score, StringFormat='{0:F0}%'}" MinimumWidthRequest="36" LineBreakMode="NoWrap" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+         </ScrollView>
 	</ContentPage.Content>
 </ContentPage>
