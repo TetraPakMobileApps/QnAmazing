@@ -14,9 +14,13 @@ namespace QnAmazing
 
         private ISpeechService textToSpeech;
 
-        public QnAmazingPageViewModel()
+        private INavigation navigation;
+
+        public QnAmazingPageViewModel(INavigation navigation)
         {
             IsEntryPossible = true;
+
+            this.navigation = navigation;
 
             AskCommand = new Command(AskCommandHandler);
             Answers = new ObservableCollection<QnAMakerResult>();
@@ -26,18 +30,49 @@ namespace QnAmazing
 
         private async void AskCommandHandler()
         {
+            if (String.IsNullOrEmpty(Query)) {
+                return;
+            }
             IsEntryPossible = false;
             try 
             {
-                var qnaResult = await WebService.Query(query);
+                var qnaResult = await WebService.Query(Query);
                 Debug.WriteLine(qnaResult.ToString());
                 ResponseJson = qnaResult.ToString();
                 Answers.Insert(0, qnaResult);
                 textToSpeech.Speak(qnaResult.Answer);
+                Query = "";
             }
             finally {
                 IsEntryPossible = true;
             }
+        }
+
+        private QnAMakerResult ourSelectedItem;
+        public QnAMakerResult OurSelectedItem
+        {
+			get
+			{
+				return ourSelectedItem;
+			}
+			set
+			{
+				if (ourSelectedItem == value)
+				{
+					return;
+				}
+
+				ourSelectedItem = value;
+				if (PropertyChanged != null)
+				{
+                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(OurSelectedItem)));
+				}
+
+                if (ourSelectedItem != null) {
+                    navigation.PushAsync(new QuestionDetailPage(ourSelectedItem));
+                    ourSelectedItem = null;
+                }
+			}
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

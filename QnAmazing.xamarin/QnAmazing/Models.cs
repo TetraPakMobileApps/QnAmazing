@@ -20,9 +20,9 @@ namespace QnAmazing
         [JsonIgnore]
         public string Emoji {
             get {
-                if (Score < 30) return "BAD";
-                if (Score < 60) return "NJEA";
-                return "GOOD";
+                if (Score < 30) return "\U0001F639";
+                if (Score < 60) return "\U0001F63C";
+                return "\U0001F63A";
             }
         }
 

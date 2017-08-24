@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:QnAmazing" x:Class="QnAmazing.QnAmazingPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:QnAmazing" 
+    x:Class="QnAmazing.QnAmazingPage"
+    Title="QnAmazing">
     <StackLayout Padding="20,30,20,0">
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
             <Grid HorizontalOptions="FillAndExpand">
-                <Entry IsEnabled="{Binding IsEntryPossible}" Text="{Binding Query}" HorizontalOptions="FillAndExpand" BackgroundColor="Aqua" />
+                <Entry IsEnabled="{Binding IsEntryPossible}" Text="{Binding Query}" HorizontalOptions="FillAndExpand"/>
                 <ActivityIndicator IsVisible="{Binding IsBusy}" IsRunning="true"></ActivityIndicator>
             </Grid>
             <Button IsEnabled="{Binding IsEntryPossible}" Text="Ask!" Command="{Binding AskCommand}" />
         </StackLayout>
-        <Label Text="{Binding ResponseJson}" BackgroundColor="Fuchsia" />
-        <ListView ItemsSource="{Binding Answers}" BackgroundColor="Lime" HasUnevenRows="true">
+        <Label Text="{Binding ResponseJson}" IsVisible="false" />
+        <ListView 
+            x:Name="AnswerList"
+            ItemsSource="{Binding Answers}" 
+            HasUnevenRows="true" 
+            SelectedItem="{Binding OurSelectedItem, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Vertical">
-                            <Label Text="{Binding Question}" FontSize="16" FontAttributes="Italic" />
-                            <StackLayout Orientation="Horizontal" Padding="9,0,9,9" BackgroundColor="Yellow">
-                                <Label Text="{Binding Answer}" FontSize="18" HorizontalOptions="FillAndExpand" BackgroundColor="Green" />
-                                <Label Text="{Binding Emoji}" HorizontalOptions="End" BackgroundColor="Blue" MinimumWidthRequest="30" LineBreakMode="NoWrap"/>
+                            <Label Text="{Binding Question}" FontSize="16" FontAttributes="Italic" Margin="0,9,0,0" />
+                            <StackLayout Orientation="Horizontal" Padding="9,0,9,9">
+                                <Label Text="{Binding Answer}" FontSize="18" HorizontalOptions="FillAndExpand"/>
+                                <Label Text="{Binding Emoji}" HorizontalOptions="End" MinimumWidthRequest="30" LineBreakMode="NoWrap"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

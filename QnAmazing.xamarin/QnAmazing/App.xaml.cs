@@ -8,7 +8,7 @@ namespace QnAmazing
         {
             InitializeComponent();
 
-            MainPage = new QnAmazingPage();
+            MainPage = new NavigationPage(new QnAmazingPage());
         }
 
         protected override void OnStart()

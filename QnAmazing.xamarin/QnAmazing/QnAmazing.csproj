@@ -30,6 +30,9 @@
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
     <EmbeddedResource Include="QnAmazingPage.xaml" />
+    <EmbeddedResource Include="QuestionDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -43,6 +46,10 @@
     <Compile Include="Models.cs" />
     <Compile Include="WebService.cs" />
     <Compile Include="ISpeechService.cs" />
+    <Compile Include="QuestionDetailPage.xaml.cs">
+      <DependentUpon>QuestionDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionDetailViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
